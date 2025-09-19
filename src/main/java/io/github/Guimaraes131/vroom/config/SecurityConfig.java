@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .formLogin(configurer -> {
                     configurer
                             .loginPage("/login")
-                            .defaultSuccessUrl("/index")
+                            .defaultSuccessUrl("/tags")
                             .permitAll();
                 })
                 .build();
