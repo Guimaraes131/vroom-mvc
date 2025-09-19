@@ -22,9 +22,17 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/login/**").permitAll();
+                    auth.requestMatchers("/register/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/users/**").permitAll();
 
                     auth.anyRequest().authenticated();
+                })
+                .formLogin(configurer -> {
+                    configurer
+                            .loginPage("/login")
+                            .defaultSuccessUrl("/index")
+                            .permitAll();
                 })
                 .build();
     }
