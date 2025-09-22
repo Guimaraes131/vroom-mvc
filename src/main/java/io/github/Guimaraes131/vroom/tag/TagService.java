@@ -28,6 +28,10 @@ public class TagService {
         return repository.findById(id);
     }
 
+    public List<Tag> getAllTags() {
+        return repository.findAll();
+    }
+
     public void delete(Tag tag) {
         if (!tag.isDeletable()) {
             throw new InvalidOperationException("Cannot delete a Tag that is being used.");
