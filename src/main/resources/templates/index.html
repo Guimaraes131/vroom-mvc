@@ -1,12 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #212121;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #1c1c1c;
+      padding: 1rem 2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    nav li {
+      display: inline;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 3rem;
+      color: #28a745;
+    }
+
+    .btn-logout {
+      background-color: #dc3545;
+      border: none;
+    }
+
+    .btn-logout:hover {
+      background-color: #c82333;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Olá, <span th:text="${username}"></span>!</h1>
+<!-- Navbar com logout -->
+<nav>
+  <ul>
+    <li>
+      <form method="post" th:action="@{/logout}">
+        <button type="submit" class="btn btn-logout btn-sm text-white">Logout</button>
+      </form>
+    </li>
+  </ul>
+</nav>
 
+<h1>Olá, <span th:text="${username}"></span>!</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

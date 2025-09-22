@@ -34,6 +34,11 @@ public class SecurityConfig {
                             .defaultSuccessUrl("/tags")
                             .permitAll();
                 })
+                .logout( logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/logout-success")
+                        .permitAll()
+                )
                 .build();
     }
 
