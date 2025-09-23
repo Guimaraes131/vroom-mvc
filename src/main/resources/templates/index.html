@@ -107,7 +107,7 @@
 <h1>Olá, <span th:text="${username}"></span>!</h1>
 
 <div class="tags-container">
-    <a class="tag" th:each="tag : ${tags}" th:href="@{/motorcycle-form}">
+    <a class="tag" th:each="tag : ${tags}" th:href="@{/motorcycle/form}">
         <p class="tag-label" th:text="${tag.getCoordinate()}"></p>
     </a>
 </div>
