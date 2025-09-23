@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vroom</title>
+    <style>
+        body {
+            background-color: #292929;
+            color: #FFF;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .details-container {
+            background-color: #353535;
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .detail-row {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .detail-row strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: #b5b5b5;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-row span {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .buttons-container {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border-radius: 6px;
+            padding: 12px 24px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFF;
+            text-decoration: none;
+            border: none;
+            transition: background 0.2s ease;
+        }
+
+        .back-button {
+            background-color: #00D200;
+        }
+
+        .back-button:hover {
+            background-color: #00b800;
+        }
+
+        .locate-button {
+            background-color: #007bff;
+        }
+
+        .locate-button:hover {
+            background-color: #0069d9;
+        }
+
+        .unlink-button {
+            background-color: #dc3545;
+        }
+
+        .unlink-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 th:text="'Moto ' + ${motorcycle.tag.coordinate}"></h2>
+
+    <div class="details-container">
+        <div class="detail-row">
+            <strong>Chassi</strong>
+            <span th:text="${motorcycle.chassis}"></span>
+        </div>
+        <div class="detail-row">
+            <strong>Modelo</strong>
+            <span th:text="${motorcycle.model}"></span>
+        </div>
+        <div class="detail-row">
+            <strong>Problema</strong>
+            <span th:text="${motorcycle.problem}"></span>
+        </div>
+    </div>
+
+    <div class="buttons-container">
+        <a th:href="@{/tags}" class="btn back-button">Voltar</a>
+        <button class="btn locate-button">Localizar moto</button>
+        <button class="btn unlink-button">Desvincular moto</button>
+    </div>
+</div>
+</body>
+</html>

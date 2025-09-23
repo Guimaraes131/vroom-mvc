@@ -9,10 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -36,6 +33,14 @@ public class MotorcycleController {
         model.addAttribute("motorcycleForm", form);
 
         return "form";
+    }
+
+    @GetMapping("/{id}")
+    public String motorcycleDetails(@PathVariable UUID id, Model model) {
+        Motorcycle motorcycle = motorcycleService.getById(id);
+
+        model.addAttribute("motorcycle", motorcycle);
+        return "motorcycle-details";
     }
 
     @PostMapping("/form")

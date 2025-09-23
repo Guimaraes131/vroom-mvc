@@ -7,6 +7,8 @@ import io.github.Guimaraes131.vroom.tag.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class MotorcycleService {
@@ -33,5 +35,11 @@ public class MotorcycleService {
         motorcycle.getTag().setColor(motorcycle.getProblem().getAssociatedColor());
 
         repository.save(motorcycle);
+    }
+
+    public Motorcycle getById(UUID id) {
+        return repository.findById(id).orElseThrow(
+                () -> new RuntimeException("Moto não encontrada")
+        );
     }
 }
