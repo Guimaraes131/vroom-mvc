@@ -123,7 +123,11 @@
     <div class="buttons-container">
         <a th:href="@{/tags}" class="btn back-button">Voltar</a>
         <button class="btn locate-button">Localizar moto</button>
-        <button class="btn unlink-button">Desvincular moto</button>
+
+        <form th:action="${'/motorcycle/' + motorcycle.id}" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+            <button class="btn unlink-button">Excluir moto</button>
+        </form>
     </div>
 </div>
 </body>

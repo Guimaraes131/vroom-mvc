@@ -54,4 +54,11 @@ public class MotorcycleController {
 
         return "redirect:/tags";
     }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable UUID id) {
+        motorcycleService.delete(id);
+
+        return "redirect:/tags";
+    }
 }

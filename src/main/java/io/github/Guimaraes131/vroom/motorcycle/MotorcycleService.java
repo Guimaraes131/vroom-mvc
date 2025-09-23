@@ -4,6 +4,7 @@ package io.github.Guimaraes131.vroom.motorcycle;
 import io.github.Guimaraes131.vroom.motorcycle.dto.MotorcycleForm;
 import io.github.Guimaraes131.vroom.tag.Tag;
 import io.github.Guimaraes131.vroom.tag.TagRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,19 @@ public class MotorcycleService {
         return repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Moto não encontrada")
         );
+    }
+
+    public void delete(UUID id) {
+        var motorcycle = getById(id);
+        var tag = tagRepository.findById(motorcycle.getTag().getId())
+                .orElseThrow(
+                        () -> new IllegalStateException("Tag não encontrada.")
+                );
+
+        tag.setIsAvailable(true);
+        tag.setColor(null);
+        tag.setMotorcycle(null);
+
+        repository.delete(motorcycle);
     }
 }
