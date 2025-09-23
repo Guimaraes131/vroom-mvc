@@ -28,8 +28,8 @@ public class TagService {
         return repository.findById(id);
     }
 
-    public List<Tag> getAllTags() {
-        return repository.findAll();
+    public List<Tag> getAllTagsOrderByCoordinate() {
+        return repository.findAllByOrderByCoordinateAsc();
     }
 
     public void delete(Tag tag) {

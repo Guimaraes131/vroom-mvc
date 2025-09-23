@@ -105,79 +105,52 @@
         <p>Preencha as informações abaixo.</p>
     </section>
 
-    <form class="form-container" id="motoForm">
+    <form method="POST" th:object="${motorcycleForm}" th:action="${'/motorcycle/form'}" class="form-container" id="motoForm">
         <h2>Adicionar</h2>
+
+        <input th:field="*{tagId}" type="hidden" id="tagInput" name="tagId">
 
         <div class="row">
             <div class="input-wrapper">
                 <label for="plate">Placa</label>
-                <input type="text" id="plate" placeholder="Digite a placa">
+                <input th:field="*{licensePlate}" type="text" id="plate" placeholder="Digite a placa">
             </div>
 
             <div class="input-wrapper">
                 <label for="model">Modelo</label>
-                <select id="model">
+                <select th:field="*{model}" id="model">
                     <option disabled selected value="">Selecione um modelo</option>
-                    <option value="MOTTUE">MOTTUE</option>
-                    <option value="MOTTUPOP">MOTTUPOP</option>
-                    <option value="MOTTUSPORT">MOTTUSPORT</option>
+                    <option th:each="m : ${T(io.github.Guimaraes131.vroom.motorcycle.enums.MotorcycleModel).values()}"
+                            th:value="${m}" th:text="${m}"></option>
                 </select>
             </div>
         </div>
 
         <div class="input-wrapper">
             <label for="chassis">Chassi</label>
-            <input type="text" id="chassis" placeholder="Digite o chassi">
+            <input th:field="*{chassis}" type="text" id="chassis" placeholder="Digite o chassi">
         </div>
 
         <div class="input-wrapper">
             <label for="situation">Situação</label>
-            <select id="situation">
+            <select th:field="*{problem}" id="situation">
                 <option disabled selected value="">Selecione um problema</option>
-                <option value="MECHANICAL">Problema Mecânico</option>
-                <option value="ELECTRICAL">Problema Elétrico</option>
-                <option value="DOCUMENTATION">Documentação</option>
-                <option value="AESTHETIC">Problema Estético</option>
-                <option value="SAFETY">Problema de Segurança</option>
-                <option value="MULTIPLE">Múltiplos Problemas</option>
-                <option value="COMPLIANT">Conforme</option>
+                <option th:each="p : ${T(io.github.Guimaraes131.vroom.motorcycle.enums.ProblemCategory).values()}"
+                        th:value="${p}" th:text="${p}"></option>
             </select>
         </div>
 
         <div class="input-wrapper">
             <label for="description">Descrição do Problema</label>
-            <textarea id="description" rows="4" placeholder="Faça uma descrição dos problemas da moto"></textarea>
+            <textarea th:field="*{problemDescription}" id="description" rows="4" placeholder="Faça uma descrição dos problemas da moto"></textarea>
         </div>
 
         <div class="buttons-container">
-            <div class="submit-button" onclick="handleSubmit()">Adicionar moto</div>
+            <button type="submit" class="submit-button">Adicionar moto</button>
             <div class="cancel-button" onclick="window.history.back()">Cancelar</div>
         </div>
     </form>
 </div>
 
-<script>
-    const motorcycles = [];
-
-    function handleSubmit() {
-      const plate = document.getElementById('plate').value.trim();
-      const model = document.getElementById('model').value;
-      const chassis = document.getElementById('chassis').value.trim();
-      const situation = document.getElementById('situation').value;
-      const description = document.getElementById('description').value.trim();
-
-      if (!plate || !model || !chassis || !situation) {
-        alert('Erro: Preencha todos os campos.');
-        return;
-      }
-
-      const motorcycle = { plate, model, chassis, situation, description };
-      motorcycles.push(motorcycle);
-      console.log(motorcycles);
-
-      alert('Moto adicionada com sucesso');
-      window.location.href = 'index.html';
-    }
-</script>
 </body>
 </html>

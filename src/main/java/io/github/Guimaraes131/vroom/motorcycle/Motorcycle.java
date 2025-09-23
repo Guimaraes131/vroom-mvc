@@ -5,6 +5,7 @@ import io.github.Guimaraes131.vroom.motorcycle.enums.ProblemCategory;
 import io.github.Guimaraes131.vroom.tag.Tag;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_motorcycle")
@@ -31,6 +33,8 @@ public class Motorcycle {
     @Enumerated(EnumType.STRING)
     private MotorcycleModel model;
 
+
+    @Enumerated(EnumType.STRING)
     private ProblemCategory problem;
 
     @OneToOne

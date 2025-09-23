@@ -1,7 +1,10 @@
 package io.github.Guimaraes131.vroom.motorcycle;
 
 
+import io.github.Guimaraes131.vroom.motorcycle.dto.MotorcycleForm;
 import io.github.Guimaraes131.vroom.motorcycle.enums.ProblemCategory;
+import io.github.Guimaraes131.vroom.tag.Tag;
+import io.github.Guimaraes131.vroom.tag.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -16,6 +19,21 @@ import java.util.UUID;
 public class MotorcycleService {
 
     private final MotorcycleRepository repository;
+    private final TagRepository tagRepository;
+
+    public Motorcycle toEntity(MotorcycleForm dto) {
+        Tag tag = tagRepository.findById(dto.getTagId())
+                .orElseThrow(() -> new RuntimeException("Tag não encontrada"));
+
+        return Motorcycle.builder()
+                .model(dto.getModel())
+                .problemDescription(dto.getProblemDescription())
+                .problem(dto.getProblem())
+                .chassis(dto.getChassis())
+                .licensePlate(dto.getLicensePlate())
+                .tag(tag)
+                .build();
+    }
 
     public void create(Motorcycle motorcycle) {
         motorcycle.getTag().setIsAvailable(false);
