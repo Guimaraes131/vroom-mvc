@@ -1,5 +1,6 @@
 package io.github.Guimaraes131.vroom.tag;
 
+import io.github.Guimaraes131.vroom.motorcycle.Motorcycle;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,9 @@ public class Tag {
 
     @Column(name = "is_available")
     private Boolean isAvailable;
+
+    @OneToOne(mappedBy = "tag")
+    private Motorcycle motorcycle;
 
     public boolean isDeletable() {
         return this.isAvailable;
