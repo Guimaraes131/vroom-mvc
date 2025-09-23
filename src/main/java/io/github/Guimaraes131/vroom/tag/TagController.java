@@ -21,7 +21,7 @@ public class TagController {
         String username = authentication.getName();
 
         model.addAttribute("username", username);
-        model.addAttribute("tags", service.getAllTagsOrderByCoordinate());
+        model.addAttribute("tags", service.index());
 
         return "index";
     }

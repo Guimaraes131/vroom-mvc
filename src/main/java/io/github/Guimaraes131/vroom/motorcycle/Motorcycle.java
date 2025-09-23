@@ -33,7 +33,6 @@ public class Motorcycle {
     @Enumerated(EnumType.STRING)
     private MotorcycleModel model;
 
-
     @Enumerated(EnumType.STRING)
     private ProblemCategory problem;
 

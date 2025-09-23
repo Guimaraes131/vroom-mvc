@@ -1,8 +1,6 @@
 package io.github.Guimaraes131.vroom.motorcycle;
 
 import io.github.Guimaraes131.vroom.motorcycle.dto.MotorcycleForm;
-import io.github.Guimaraes131.vroom.motorcycle.enums.MotorcycleModel;
-import io.github.Guimaraes131.vroom.motorcycle.enums.ProblemCategory;
 import io.github.Guimaraes131.vroom.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
