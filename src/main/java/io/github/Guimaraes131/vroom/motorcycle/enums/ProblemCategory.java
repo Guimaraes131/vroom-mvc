@@ -4,17 +4,19 @@ import lombok.Getter;
 
 @Getter
 public enum ProblemCategory {
-    MECHANICAL("rgb(255, 0, 0)"),
-    ELECTRICAL("rgb(0, 0, 255)"),
-    DOCUMENTATION("rgb(0, 255, 0)"),
-    AESTHETIC("rgb(255, 255, 0)"),
-    SAFETY("rgb(255, 165, 0)"),
-    MULTIPLE("rgb(255, 192, 203)"),
-    COMPLIANT("rgb(255, 255, 255)");
+    MECHANICAL("rgb(255, 0, 0)", "Mecânico"),
+    ELECTRICAL("rgb(0, 0, 255)", "Elétrico"),
+    DOCUMENTATION("rgb(0, 255, 0)", "Documentação"),
+    AESTHETIC("rgb(255, 255, 0)", "Estético"),
+    SAFETY("rgb(255, 165, 0)", "Segurança"),
+    MULTIPLE("rgb(255, 192, 203)", "Múltiplos"),
+    COMPLIANT("rgb(255, 255, 255)", "Conforme");
 
     private final String associatedColor;
+    private final String value;
 
-    ProblemCategory(String color) {
+    ProblemCategory(String color, String value) {
         this.associatedColor = color;
+        this.value = value;
     }
 }

@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vroom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@500&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #292929;
             color: #FFF;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,32 +17,29 @@
             justify-content: center;
             min-height: 100vh;
         }
-
         .container {
             max-width: 600px;
             width: 100%;
             padding: 20px;
         }
-
         h2 {
             font-weight: 600;
             margin-bottom: 20px;
             text-align: center;
             font-size: 2rem;
             letter-spacing: 0.5px;
+            font-family: 'Montserrat', sans-serif;
+            color: #28a745;
         }
-
         .details-container {
             background-color: #353535;
             border-radius: 12px;
             padding: 32px;
         }
-
         .detail-row {
             margin-bottom: 20px;
             text-align: center;
         }
-
         .detail-row strong {
             display: block;
             font-size: 0.9rem;
@@ -49,12 +47,10 @@
             color: #b5b5b5;
             letter-spacing: 0.5px;
         }
-
         .detail-row span {
             font-size: 1.1rem;
             font-weight: 500;
         }
-
         .buttons-container {
             margin-top: 28px;
             display: flex;
@@ -62,7 +58,6 @@
             gap: 12px;
             flex-wrap: wrap;
         }
-
         .btn {
             border-radius: 6px;
             padding: 12px 24px;
@@ -74,28 +69,23 @@
             text-decoration: none;
             border: none;
             transition: background 0.2s ease;
+            font-family: 'Poppins', sans-serif;
         }
-
         .back-button {
-            background-color: #00D200;
+            background-color: #28a745;
         }
-
         .back-button:hover {
-            background-color: #00b800;
+            background-color: #218838;
         }
-
         .locate-button {
             background-color: #007bff;
         }
-
         .locate-button:hover {
             background-color: #0069d9;
         }
-
         .unlink-button {
             background-color: #dc3545;
         }
-
         .unlink-button:hover {
             background-color: #c82333;
         }
@@ -104,7 +94,6 @@
 <body>
 <div class="container">
     <h2 th:text="'Moto ' + ${motorcycle.tag.coordinate}"></h2>
-
     <div class="details-container">
         <div class="detail-row">
             <strong>Chassi</strong>
@@ -119,11 +108,9 @@
             <span th:text="${motorcycle.problem}"></span>
         </div>
     </div>
-
     <div class="buttons-container">
         <a th:href="@{/tags}" class="btn back-button">Voltar</a>
         <button class="btn locate-button">Localizar moto</button>
-
         <form th:action="${'/motorcycle/' + motorcycle.id}" method="post">
             <input type="hidden" name="_method" value="delete"/>
             <button class="btn unlink-button">Excluir moto</button>
