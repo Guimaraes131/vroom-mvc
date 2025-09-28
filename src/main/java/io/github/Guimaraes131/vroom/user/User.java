@@ -20,6 +20,7 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    // ok
     private String login;
     private String password;
 
