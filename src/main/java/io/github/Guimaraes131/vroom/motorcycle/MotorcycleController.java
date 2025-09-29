@@ -1,8 +1,6 @@
 package io.github.Guimaraes131.vroom.motorcycle;
 
 import io.github.Guimaraes131.vroom.motorcycle.dto.MotorcycleForm;
-import io.github.Guimaraes131.vroom.user.UserService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +17,6 @@ import java.util.UUID;
 public class MotorcycleController {
 
     private final MotorcycleService motorcycleService;
-    private final UserService userService;
 
     @GetMapping("/form")
     public String createMotorcycleForm(@RequestParam(required = false) UUID tagId, Model model) {
@@ -44,11 +41,8 @@ public class MotorcycleController {
     }
 
     @PostMapping("/form")
-    public String create(@Valid MotorcycleForm motorcycleForm, BindingResult result) {
-        if (result.hasErrors()) {
-            System.out.println(result.getAllErrors());
-            return "form";
-        }
+    public String create(MotorcycleForm motorcycleForm, BindingResult result) {
+        if (result.hasErrors()) return "form";
 
         motorcycleService.create(motorcycleService.toEntity(motorcycleForm));
 
