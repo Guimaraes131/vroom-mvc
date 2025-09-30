@@ -63,7 +63,7 @@
         gap: 14px;
     }
     .submit-button {
-        background-color: #fd7e14; /* laranja para update */
+        background-color: #fd7e14;
         border-radius: 5px;
         padding: 16px;
         text-align: center;
@@ -99,19 +99,15 @@
     <p>Atualize as informações abaixo.</p>
   </section>
 
-  <form method="post"
-        th:object="${motorcycleForm}"
-        th:action="@{/motorcycle/{id}(id=${motorcycleId})}"
-        class="form-container"
-        id="motoForm">
+  <form method="post" th:object="${motorcycleForm}" th:action="@{/motorcycle/{id}(id=${motorcycleId})}" class="form-container" id="motoForm">
     <input type="hidden" name="_method" value="put"/>
-
     <input th:field="*{tagId}" type="hidden" id="tagInput" name="tagId">
 
     <div class="row">
       <div class="input-wrapper">
         <label for="plate">Placa</label>
         <input th:field="*{licensePlate}" type="text" id="plate" placeholder="Digite a placa">
+        <span th:if="${#fields.hasErrors('licensePlate')}" th:errors="*{licensePlate}" style="color: #ff4d4f; font-size: 12px;"></span>
       </div>
       <div class="input-wrapper">
         <label for="model">Modelo</label>
@@ -120,12 +116,14 @@
           <option th:each="m : ${T(io.github.Guimaraes131.vroom.motorcycle.enums.MotorcycleModel).values()}"
                   th:value="${m}" th:text="${m}"></option>
         </select>
+        <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}" style="color: #ff4d4f; font-size: 12px;"></span>
       </div>
     </div>
 
     <div class="input-wrapper">
       <label for="chassis">Chassi</label>
       <input th:field="*{chassis}" type="text" id="chassis" placeholder="Digite o chassi">
+      <span th:if="${#fields.hasErrors('chassis')}" th:errors="*{chassis}" style="color: #ff4d4f; font-size: 12px;"></span>
     </div>
 
     <div class="input-wrapper">
@@ -135,12 +133,14 @@
         <option th:each="p : ${T(io.github.Guimaraes131.vroom.motorcycle.enums.ProblemCategory).values()}"
                 th:value="${p}" th:text="${p}"></option>
       </select>
+      <span th:if="${#fields.hasErrors('problem')}" th:errors="*{problem}" style="color: #ff4d4f; font-size: 12px;"></span>
     </div>
 
     <div class="input-wrapper">
       <label for="description">Descrição do Problema</label>
       <textarea th:field="*{problemDescription}" id="description" rows="4"
                 placeholder="Faça uma descrição dos problemas da moto"></textarea>
+      <span th:if="${#fields.hasErrors('problemDescription')}" th:errors="*{problemDescription}" style="color: #ff4d4f; font-size: 12px;"></span>
     </div>
 
     <div class="buttons-container">

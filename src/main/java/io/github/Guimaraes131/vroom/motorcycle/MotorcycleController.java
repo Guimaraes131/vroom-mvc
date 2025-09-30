@@ -1,6 +1,7 @@
 package io.github.Guimaraes131.vroom.motorcycle;
 
 import io.github.Guimaraes131.vroom.motorcycle.dto.MotorcycleForm;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -62,25 +63,32 @@ public class MotorcycleController {
     }
 
     @PostMapping("/form")
-    public String create(MotorcycleForm motorcycleForm, BindingResult result) {
+    public String create(@Valid MotorcycleForm motorcycleForm, BindingResult result, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
+
         if (result.hasErrors()) return "form";
 
         motorcycleService.create(motorcycleService.toEntity(motorcycleForm));
-
         return "redirect:/tags";
     }
 
     @PutMapping("/{id}")
     public String update(@PathVariable UUID id,
-                         @ModelAttribute("motorcycleForm") MotorcycleForm motorcycleForm,
-                         BindingResult result) {
+                         @ModelAttribute("motorcycleForm") @Valid MotorcycleForm motorcycleForm,
+                         BindingResult result,
+                         Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
+        model.addAttribute("motorcycleId", id);
+
         if (result.hasErrors()) return "update-motorcycle-form";
 
         motorcycleService.update(id, motorcycleForm);
-
         return "redirect:/motorcycle/" + id;
     }
-
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable UUID id) {
