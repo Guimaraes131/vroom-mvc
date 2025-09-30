@@ -79,8 +79,10 @@ public class MotorcycleController {
                          @ModelAttribute("motorcycleForm") @Valid MotorcycleForm motorcycleForm,
                          BindingResult result,
                          Model model) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
+
         model.addAttribute("username", username);
         model.addAttribute("motorcycleId", id);
 
