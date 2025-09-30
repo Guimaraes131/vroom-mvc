@@ -15,9 +15,8 @@ public class UserService {
 
     public void create(User user) {
         String password = user.getPassword();
-
         user.setPassword(encoder.encode(password));
-        user.setRoles(List.of());
+
         repository.save(user);
     }
 

@@ -26,6 +26,8 @@ public class SecurityConfig {
                     auth.requestMatchers("/register/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/users/**").permitAll();
 
+                    auth.requestMatchers(HttpMethod.DELETE, "/motorcycle/**").hasRole("MANAGER");
+
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(configurer -> {

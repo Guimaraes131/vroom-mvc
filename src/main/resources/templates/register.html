@@ -36,7 +36,7 @@
             border-color: #28a745;
             font-family: 'Montserrat', sans-serif;
         }
-        .form-control {
+        .form-control, .form-select {
             background-color: #333333;
             border: 1px solid #444444;
             color: white;
@@ -45,7 +45,7 @@
         .form-control::placeholder {
             color: #888888;
         }
-        .form-control:focus {
+        .form-control:focus, .form-select:focus {
             border-color: #28a745;
             background-color: #1a1a1a;
         }
@@ -72,6 +72,14 @@
         <div class="mb-3">
             <label for="password" class="form-label text-white">Senha</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label text-white">Tipo de usuário</label>
+            <select class="form-select" id="role" name="role" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="OPERATOR">Operador</option>
+                <option value="MANAGER">Gerente</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary w-100">Registrar</button>
     </form>

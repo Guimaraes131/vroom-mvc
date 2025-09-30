@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -150,7 +152,10 @@
 
             <div class="buttons-row">
                 <a th:href="@{/motorcycle/update/{id}(id=${motorcycle.id})}" class="btn edit-btn">Editar informações</a>
-                <form th:action="${'/motorcycle/' + motorcycle.id}" method="post" style="flex:1; display:flex;">
+
+                <form sec:authorize="hasRole('MANAGER')"
+                      th:action="@{'/motorcycle/' + ${motorcycle.id}}"
+                      method="post" style="flex:1; display:flex;">
                     <input type="hidden" name="_method" value="delete"/>
                     <button class="btn delete-btn" type="submit">Excluir moto</button>
                 </form>
