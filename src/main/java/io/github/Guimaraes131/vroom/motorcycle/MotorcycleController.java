@@ -40,6 +40,27 @@ public class MotorcycleController {
         return "motorcycle-details";
     }
 
+    @GetMapping("/update/{id}")
+    public String updateMotorcycleForm(@PathVariable UUID id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Motorcycle motorcycle = motorcycleService.getById(id);
+        MotorcycleForm form = MotorcycleForm.builder()
+                .chassis(motorcycle.getChassis())
+                .licensePlate(motorcycle.getLicensePlate())
+                .model(motorcycle.getModel())
+                .problem(motorcycle.getProblem())
+                .tagId(motorcycle.getTag().getId())
+                .build();
+
+        model.addAttribute("username", username);
+        model.addAttribute("motorcycleForm", form);
+        model.addAttribute("motorcycleId", id);
+
+        return "update-motorcycle-form";
+    }
+
     @PostMapping("/form")
     public String create(MotorcycleForm motorcycleForm, BindingResult result) {
         if (result.hasErrors()) return "form";
@@ -48,6 +69,18 @@ public class MotorcycleController {
 
         return "redirect:/tags";
     }
+
+    @PutMapping("/{id}")
+    public String update(@PathVariable UUID id,
+                         @ModelAttribute("motorcycleForm") MotorcycleForm motorcycleForm,
+                         BindingResult result) {
+        if (result.hasErrors()) return "update-motorcycle-form";
+
+        motorcycleService.update(id, motorcycleForm);
+
+        return "redirect:/motorcycle/" + id;
+    }
+
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable UUID id) {

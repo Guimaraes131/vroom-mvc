@@ -17,11 +17,13 @@
             justify-content: center;
             min-height: 100vh;
         }
+
         .container {
             max-width: 600px;
             width: 100%;
             padding: 20px;
         }
+
         h2 {
             font-weight: 600;
             margin-bottom: 20px;
@@ -31,15 +33,18 @@
             font-family: 'Montserrat', sans-serif;
             color: #28a745;
         }
+
         .details-container {
             background-color: #353535;
             border-radius: 12px;
             padding: 32px;
         }
+
         .detail-row {
             margin-bottom: 20px;
             text-align: center;
         }
+
         .detail-row strong {
             display: block;
             font-size: 0.9rem;
@@ -47,10 +52,12 @@
             color: #b5b5b5;
             letter-spacing: 0.5px;
         }
+
         .detail-row span {
             font-size: 1.1rem;
             font-weight: 500;
         }
+
         .buttons-container {
             margin-top: 28px;
             display: flex;
@@ -58,6 +65,7 @@
             gap: 12px;
             flex-wrap: wrap;
         }
+
         .btn {
             border-radius: 6px;
             padding: 12px 24px;
@@ -71,21 +79,36 @@
             transition: background 0.2s ease;
             font-family: 'Poppins', sans-serif;
         }
+
         .back-button {
             background-color: #28a745;
         }
+
         .back-button:hover {
             background-color: #218838;
         }
+
         .locate-button {
             background-color: #007bff;
         }
+
         .locate-button:hover {
             background-color: #0069d9;
         }
+
+        .edit-button {
+            background-color: #ffc107;
+            color: #292929;
+        }
+
+        .edit-button:hover {
+            background-color: #e0a800;
+        }
+
         .unlink-button {
             background-color: #dc3545;
         }
+
         .unlink-button:hover {
             background-color: #c82333;
         }
@@ -94,7 +117,12 @@
 <body>
 <div class="container">
     <h2 th:text="'Moto ' + ${motorcycle.tag.coordinate}"></h2>
+
     <div class="details-container">
+        <div class="detail-row">
+            <strong>Placa</strong>
+            <span th:text="${motorcycle.licensePlate}"></span>
+        </div>
         <div class="detail-row">
             <strong>Chassi</strong>
             <span th:text="${motorcycle.chassis}"></span>
@@ -108,9 +136,11 @@
             <span th:text="${motorcycle.problem}"></span>
         </div>
     </div>
+
     <div class="buttons-container">
         <a th:href="@{/tags}" class="btn back-button">Voltar</a>
         <button class="btn locate-button">Localizar moto</button>
+        <a th:href="@{/motorcycle/update/{id}(id=${motorcycle.id})}" class="btn edit-button">Editar moto</a>
         <form th:action="${'/motorcycle/' + motorcycle.id}" method="post">
             <input type="hidden" name="_method" value="delete"/>
             <button class="btn unlink-button">Excluir moto</button>

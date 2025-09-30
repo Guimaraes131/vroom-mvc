@@ -57,4 +57,16 @@ public class MotorcycleService {
 
         repository.delete(motorcycle);
     }
+
+    public void update(UUID id, MotorcycleForm form) {
+        Motorcycle motorcycle = getById(id);
+        motorcycle.setLicensePlate(form.getLicensePlate());
+        motorcycle.setModel(form.getModel());
+        motorcycle.setChassis(form.getChassis());
+        motorcycle.setProblem(form.getProblem());
+        motorcycle.setProblemDescription(form.getProblemDescription());
+        motorcycle.getTag().setColor(form.getProblem().getAssociatedColor());
+
+        repository.save(motorcycle);
+    }
 }
