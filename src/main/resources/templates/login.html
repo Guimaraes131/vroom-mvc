@@ -68,6 +68,9 @@
 <body>
 <div class="login-container mt-5">
     <h2>Vroom</h2>
+    <div th:if="${loginError}" class="alert alert-danger text-center" style="margin-bottom: 20px;">
+        <p th:text="${loginError}"></p>
+    </div>
     <form method="post" th:action="@{/login}">
         <div class="mb-3">
             <label for="username" class="form-label text-white">Login</label>

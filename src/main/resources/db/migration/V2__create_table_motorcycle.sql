@@ -1,6 +1,6 @@
 CREATE TABLE tb_motorcycle(
     id UUID NOT NULL PRIMARY KEY,
-    license_plate VARCHAR(14) NOT NULL UNIQUE,
+    license_plate VARCHAR(7) NOT NULL UNIQUE,
     chassis VARCHAR(17) NOT NULL UNIQUE,
     problem_description VARCHAR(255),
     model VARCHAR(12) NOT NULL,

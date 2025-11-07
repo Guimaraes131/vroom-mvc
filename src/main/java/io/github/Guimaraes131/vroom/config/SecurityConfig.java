@@ -33,9 +33,11 @@ public class SecurityConfig {
                 .formLogin(configurer -> {
                     configurer
                             .loginPage("/login")
+                            .failureUrl("/login?error=true")
                             .defaultSuccessUrl("/tags", true)
                             .permitAll();
                 })
+
                 .logout( logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/logout-success")

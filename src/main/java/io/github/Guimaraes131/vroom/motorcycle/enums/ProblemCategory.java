@@ -8,9 +8,9 @@ public enum ProblemCategory {
     ELECTRICAL("rgb(0, 0, 255)", "Elétrico"),
     DOCUMENTATION("rgb(0, 255, 0)", "Documentação"),
     AESTHETIC("rgb(255, 255, 0)", "Estético"),
-    SAFETY("rgb(255, 165, 0)", "Segurança"),
-    MULTIPLE("rgb(255, 192, 203)", "Múltiplos"),
-    COMPLIANT("rgb(255, 255, 255)", "Conforme");
+    SAFETY("rgb(255, 50, 0)", "Segurança"),
+    MULTIPLE("rgb(150, 0, 0)", "Múltiplos"),
+    COMPLIANT("rgb(130, 0, 255)", "Conforme");
 
     private final String associatedColor;
     private final String value;

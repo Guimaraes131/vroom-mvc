@@ -1,8 +1,11 @@
 package io.github.Guimaraes131.vroom.user;
 
+import io.github.Guimaraes131.vroom.user.dto.UserForm;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,18 +20,25 @@ public class UserController {
 
     @GetMapping("/register")
     public String registerForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("userForm", new UserForm());
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user, String role, Model model) {
-        try {
-            user.setRoles(List.of(role));
+    public String registerUser(
+            @Valid @ModelAttribute("userForm") UserForm userForm,
+            BindingResult result,
+            Model model) {
 
-            service.create(user);
+        if (result.hasErrors()) {
+            return "register";
+        }
+
+        try {
+            service.create(userForm);
             return "redirect:/login";
         } catch (Exception e) {
+            e.printStackTrace();
             model.addAttribute("error", "Erro ao registrar o usuário. Tente novamente.");
             return "register";
         }
